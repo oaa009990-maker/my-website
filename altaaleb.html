@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769e0">
+  <meta name="description" content="الطالب — موقع تعليمي مصري يساعد طلاب الابتدائي والإعدادي على فهم دروسهم والتدرب عليها.">
+  <title>الطالب | افهم درسك بسهولة</title>
+  <style>
+    :root {
+      --blue: #1769e0;
+      --blue-dark: #104fb0;
+      --blue-light: #eaf3ff;
+      --ink: #14243b;
+      --muted: #63748b;
+      --line: #e4ebf4;
+      --white: #fff;
+      --bg: #f7faff;
+      --green: #12805c;
+      --shadow: 0 14px 36px rgba(30, 79, 143, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
+    .top-note { background: #eaf3ff; color: #174f9e; text-align: center; padding: 8px 12px; font-size: .88rem; }
+    header { background: rgba(255,255,255,.95); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.45rem; color: var(--blue-dark); }
+    .brand-mark { width: 43px; height: 43px; display: grid; place-items: center; background: var(--blue); color: white; border-radius: 14px; font-size: 1.35rem; box-shadow: 0 7px 18px #1769e044; }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: #52637b; font-size: .95rem; }
+    .nav-links a:hover { color: var(--blue); }
+    .btn { border: 0; border-radius: 13px; padding: 12px 19px; cursor: pointer; font-weight: 700; transition: transform .15s, background .15s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { color: white; background: var(--blue); box-shadow: 0 8px 20px #1769e02b; }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-outline { color: var(--blue-dark); background: white; border: 1px solid #cdddf3; }
+    .hero { padding: 62px 0 44px; overflow: hidden; background: radial-gradient(circle at 5% 10%, #dbeaff 0, transparent 28%), linear-gradient(180deg, #fff, #f7faff); }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 36px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; background: #eaf3ff; color: var(--blue-dark); border-radius: 999px; font-size: .87rem; font-weight: 700; }
+    h1 { font-size: clamp(2.1rem, 5vw, 3.65rem); line-height: 1.25; margin: 17px 0; letter-spacing: -.8px; }
+    h1 span { color: var(--blue); }
+    .hero p { font-size: 1.08rem; color: var(--muted); max-width: 570px; margin: 0 0 25px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 17px; margin-top: 22px; color: #53657c; font-size: .9rem; }
+    .hero-points span::before { content: "✓"; color: var(--green); font-weight: 900; margin-left: 6px; }
+    .visual { min-height: 330px; position: relative; display: grid; place-items: center; }
+    .study-card { width: min(100%, 390px); background: white; border: 1px solid #e5edf8; border-radius: 26px; padding: 23px; box-shadow: 0 25px 65px #1e4f8f1a; transform: rotate(-1.5deg); }
+    .study-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
+    .avatar { width: 48px; height: 48px; border-radius: 16px; background: #dcecff; display: grid; place-items: center; font-size: 1.6rem; }
+    .tiny { color: var(--muted); font-size: .82rem; }
+    .lesson-row { display: flex; align-items: center; gap: 12px; padding: 13px 0; }
+    .lesson-icon { width: 43px; height: 43px; border-radius: 13px; background: var(--blue-light); display: grid; place-items: center; font-size: 1.2rem; flex-shrink: 0; }
+    .progress { height: 8px; background: #edf2f8; border-radius: 99px; overflow: hidden; margin-top: 7px; }
+    .progress span { display: block; width: 68%; height: 100%; background: var(--blue); border-radius: inherit; }
+    .floating { position: absolute; background: white; border: 1px solid var(--line); border-radius: 16px; padding: 12px 15px; box-shadow: var(--shadow); font-weight: 700; }
+    .float-top { top: 16px; right: -3px; }
+    .float-bottom { bottom: 12px; left: -2px; }
+    section { padding: 48px 0; }
+    .section-heading { text-align: center; max-width: 650px; margin: 0 auto 28px; }
+    .section-heading h2 { font-size: clamp(1.55rem, 3vw, 2.15rem); margin: 0 0 8px; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .panel { background: white; border: 1px solid var(--line); border-radius: 23px; padding: 25px; box-shadow: var(--shadow); }
+    .finder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+    .field { display: grid; gap: 7px; margin-bottom: 15px; }
+    label { font-weight: 700; font-size: .93rem; }
+    input, select { width: 100%; border: 1px solid #d8e2ef; border-radius: 12px; background: #fff; color: var(--ink); padding: 13px 14px; outline: none; min-height: 49px; }
+    input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px #1769e018; }
+    .hint { color: var(--muted); font-size: .82rem; margin-top: 5px; }
+    .search-input { display: flex; gap: 8px; }
+    .search-input input { min-width: 0; }
+    .result { display: none; margin-top: 17px; border-radius: 14px; padding: 14px; background: #f0f8ff; border: 1px solid #d5e8ff; color: #194b88; }
+    .result.show { display: block; }
+    .result strong { display: block; margin-bottom: 5px; }
+    .subject-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 15px; }
+    .subject { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 15px 10px; text-align: center; cursor: pointer; transition: .15s; }
+    .subject:hover, .subject.active { border-color: var(--blue); background: #f2f7ff; }
+    .subject .emoji { display: block; font-size: 1.6rem; margin-bottom: 5px; }
+    .subject small { color: var(--muted); display: block; font-size: .78rem; }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .how-card { background: white; border: 1px solid var(--line); border-radius: 19px; padding: 23px; }
+    .number { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--blue-light); color: var(--blue-dark); font-weight: 900; margin-bottom: 14px; }
+    .how-card h3 { margin: 0 0 7px; font-size: 1.1rem; }
+    .how-card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .ai-band { background: linear-gradient(115deg, #1255bd, #247ff0); border-radius: 25px; color: white; padding: 31px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .ai-band h2 { margin: 0 0 7px; font-size: 1.7rem; }
+    .ai-band p { margin: 0; color: #e1edff; max-width: 650px; }
+    .ai-band .btn { background: white; color: var(--blue-dark); flex-shrink: 0; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .87rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .notice { margin-top: 12px; color: #738197; font-size: .8rem; }
+    @media (max-width: 780px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 38px; }
+      .hero-grid, .finder-grid { grid-template-columns: 1fr; }
+      .visual { min-height: 310px; }
+      .float-top { right: 0; }
+      .float-bottom { left: 0; }
+      .how-grid { grid-template-columns: 1fr; }
+      .ai-band { align-items: flex-start; flex-direction: column; }
+      .ai-band .btn { width: 100%; }
+    }
+    @media (max-width: 430px) {
+      .container { width: min(100% - 22px, 1120px); }
+      .nav { min-height: 66px; }
+      .brand { font-size: 1.2rem; }
+      .brand-mark { width: 38px; height: 38px; }
+      .nav > .btn { padding: 10px 12px; font-size: .86rem; }
+      .panel { padding: 17px; }
+      .subject-grid { gap: 8px; }
+      .subject { padding: 12px 5px; font-size: .88rem; }
+      .study-card { padding: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-note">🇪🇬 تعليم مصري مبسّط لطلاب الابتدائي والإعدادي</div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="الطالب - الرئيسية">
+        <span class="brand-mark">ط</span><span>الطالب</span>
+      </a>
+      <nav class="nav-links" aria-label="القائمة الرئيسية">
+        <a href="#start">ابدأ التعلّم</a>
+        <a href="#subjects">المواد الدراسية</a>
+        <a href="#how">كيف يعمل؟</a>
+      </nav>
+      <a class="btn btn-primary" href="#start">ابدأ الآن ←</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✨ افهم درسك بطريقتك</span>
+          <h1>كل درس ممكن تفهمه،<br><span>خطوة بخطوة.</span></h1>
+          <p>اختار صفك ومادتك، أو اكتب اسم الدرس اللي محتاج تفهمه. «الطالب» بيساعدك تبدأ رحلتك التعليمية بطريقة بسيطة ومنظمة.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#start">ابحث عن درسي <span>←</span></a>
+            <a class="btn btn-outline" href="#how">اعرف الموقع بيشتغل إزاي</a>
+          </div>
+          <div class="hero-points"><span>مناسب للموبايل</span><span>شرح مبسّط</span><span>تدريب على الفهم</span></div>
+        </div>
+        <div class="visual" aria-label="بطاقة توضيحية للتعلم">
+          <div class="floating float-top">💡 افهمها مش تحفظها</div>
+          <div class="study-card">
+            <div class="study-head">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div class="avatar">🎒</div>
+                <div><strong>رحلتك في التعلّم</strong><div class="tiny">كل يوم خطوة جديدة</div></div>
+              </div>
+              <span style="font-size:1.5rem">📘</span>
+            </div>
+            <div style="padding:17px 0 5px"><strong>كمّل تعلّمك</strong><div class="tiny">اختار درس وابدأ على مهلك</div></div>
+            <div class="lesson-row"><div class="lesson-icon">➗</div><div style="flex:1"><strong>الرياضيات</strong><div class="tiny">أمثلة وتدريبات خطوة بخطوة</div><div class="progress"><span></span></div></div></div>
+            <div class="lesson-row"><div class="lesson-icon">🔬</div><div style="flex:1"><strong>العلوم</strong><div class="tiny">اكتشف الفكرة بطريقة سهلة</div></div></div>
+            <div class="lesson-row"><div class="lesson-icon">📖</div><div style="flex:1"><strong>اللغة العربية</strong><div class="tiny">افهم القاعدة وطبّق عليها</div></div></div>
+          </div>
+          <div class="floating float-bottom">⭐ تعلّم على قدّك</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="start">
+      <div class="container">
+        <div class="section-heading">
+          <h2>يلا نبدأ بدرس جديد</h2>
+          <p>اختار صفك ومادتك، أو ابحث باسم الدرس. تقدر تغيّر اختياراتك في أي وقت.</p>
+        </div>
+        <div class="finder-grid">
+          <div class="panel">
+            <h3 style="margin:0 0 17px">📚 اختار من المنهج</h3>
+            <div class="field">
+              <label for="stage">المرحلة الدراسية</label>
+              <select id="stage">
+                <option value="">اختار المرحلة</option>
+                <option value="ابتدائي">المرحلة الابتدائية</option>
+                <option value="إعدادي">المرحلة الإعدادية</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="grade">الصف الدراسي</label>
+              <select id="grade" disabled><option value="">اختار المرحلة الأول</option></select>
+            </div>
+            <div class="field">
+              <label for="subject">المادة</label>
+              <select id="subject">
+                <option value="">اختار المادة</option>
+                <option>اللغة العربية</option><option>اللغة الإنجليزية</option><option>الرياضيات</option>
+                <option>العلوم</option><option>الدراسات الاجتماعية</option><option>تكنولوجيا المعلومات</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lesson">اسم الدرس (اختياري)</label>
+              <input id="lesson" type="text" placeholder="مثال: الكسور الاعتيادية">
+            </div>
+            <button class="btn btn-primary" id="startLesson" style="width:100%">جهّز درسي ←</button>
+            <div class="result" id="selectionResult" role="status" aria-live="polite"></div>
+            <p class="notice">النسخة الحالية واجهة تجريبية؛ محتوى المنهج والشرح الذكي سيتم ربطهما في خطوة لاحقة.</p>
+          </div>
+
+          <div class="panel" id="subjects">
+            <h3 style="margin:0 0 7px">🔎 أو ابدأ من مادة</h3>
+            <p class="tiny" style="margin:0">اختار مادة علشان نجهزها في اختياراتك.</p>
+            <div class="subject-grid">
+              <button class="subject" data-subject="الرياضيات"><span class="emoji">➗</span>الرياضيات<small>حل وفهم</small></button>
+              <button class="subject" data-subject="العلوم"><span class="emoji">🧪</span>العلوم<small>اكتشف وتعلّم</small></button>
+              <button class="subject" data-subject="اللغة العربية"><span class="emoji">📖</span>العربي<small>قراءة وقواعد</small></button>
+              <button class="subject" data-subject="اللغة الإنجليزية"><span class="emoji">🔤</span>الإنجليزي<small>كلمات وقواعد</small></button>
+              <button class="subject" data-subject="الدراسات الاجتماعية"><span class="emoji">🌍</span>الدراسات<small>تاريخ وجغرافيا</small></button>
+              <button class="subject" data-subject="تكنولوجيا المعلومات"><span class="emoji">💻</span>التكنولوجيا<small>مهارات رقمية</small></button>
+            </div>
+            <div style="margin-top:20px;padding:15px;border-radius:15px;background:#f5f9ff">
+              <strong>💬 مش فاهم نقطة؟</strong>
+              <p class="tiny" style="margin:5px 0 0">هدفنا إنك تقدر تسأل عن الجزء اللي صعب عليك، وتشوف شرح أوضح وأمثلة إضافية. هنفعّل المعلّم الذكي بعد تجهيز الاتصال الآمن بخدمة الذكاء الاصطناعي.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-heading">
+          <h2>التعلّم في 3 خطوات</h2>
+          <p>مش لازم تحفظ كل حاجة من أول مرة؛ المهم تفهم وتجرّب وتراجع.</p>
+        </div>
+        <div class="how-grid">
+          <article class="how-card"><div class="number">١</div><h3>حدد درسك</h3><p>اختار المرحلة والصف والمادة، أو اكتب اسم الدرس اللي بتدور عليه.</p></article>
+          <article class="how-card"><div class="number">٢</div><h3>افهم الفكرة</h3><p>الخطوة التالية في تطوير الموقع هتضيف شرحًا متدرجًا وأمثلة مناسبة للصف.</p></article>
+          <article class="how-card"><div class="number">٣</div><h3>اختبر نفسك</h3><p>هنضيف أسئلة تدريبية تساعدك تعرف إيه اللي فهمته وإيه اللي محتاج مراجعة.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:5px">
+      <div class="container">
+        <div class="ai-band">
+          <div><h2>سؤالك مهم، ومفيش سؤال تافه 💙</h2><p>بنجهّز «الطالب» علشان يساعدك تفهم الدرس بأسلوب بسيط، وتسأل عن أي نقطة محتاج توضيحها.</p></div>
+          <a class="btn" href="#start">اختار درسك الآن ←</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand" style="font-size:1.1rem"><span class="brand-mark" style="width:34px;height:34px;border-radius:11px;font-size:1rem">ط</span><span>الطالب</span></div>
+      <span>© <span id="year"></span> الطالب — نتعلّم علشان نفهم.</span>
+    </div>
+  </footer>
+
+  <script>
+    const stage = document.getElementById('stage');
+    const grade = document.getElementById('grade');
+    const subject = document.getElementById('subject');
+    const lesson = document.getElementById('lesson');
+    const result = document.getElementById('selectionResult');
+
+    const grades = {
+      'ابتدائي': ['الصف الأول الابتدائي','الصف الثاني الابتدائي','الصف الثالث الابتدائي','الصف الرابع الابتدائي','الصف الخامس الابتدائي','الصف السادس الابتدائي'],
+      'إعدادي': ['الصف الأول الإعدادي','الصف الثاني الإعدادي','الصف الثالث الإعدادي']
+    };
+
+    stage.addEventListener('change', () => {
+      grade.innerHTML = '<option value="">اختار الصف الدراسي</option>';
+      (grades[stage.value] || []).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        grade.appendChild(option);
+      });
+      grade.disabled = !stage.value;
+      hideResult();
+    });
+
+    document.querySelectorAll('[data-subject]').forEach(button => {
+      button.addEventListener('click', () => {
+        subject.value = button.dataset.subject;
+        document.querySelectorAll('[data-subject]').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById('start').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    function hideResult() {
+      result.classList.remove('show');
+      result.textContent = '';
+    }
+
+    document.getElementById('startLesson').addEventListener('click', () => {
+      const stageValue = stage.value;
+      const gradeValue = grade.value;
+      const subjectValue = subject.value;
+      const lessonValue = lesson.value.trim();
+
+      if (!stageValue || !gradeValue || !subjectValue) {
+        result.innerHTML = '<strong>فاضل خطوة صغيرة 😊</strong> اختار المرحلة والصف والمادة الأول، وبعدها اضغط «جهّز درسي».';
+        result.classList.add('show');
+        return;
+      }
+
+      result.replaceChildren();
+      const title = document.createElement('strong');
+      title.textContent = 'اختياراتك جاهزة 🎉';
+      const details = document.createElement('div');
+      details.textContent = `${gradeValue} • ${subjectValue}${lessonValue ? ' • ' + lessonValue : ''}`;
+      const note = document.createElement('p');
+      note.style.margin = '8px 0 0';
+      note.textContent = 'دي نسخة تجريبية من الموقع. في الخطوة التالية هنضيف محتوى الدروس ونربط المعلّم الذكي علشان يبدأ الشرح الفعلي.';
+      result.append(title, details, note);
+      result.classList.add('show');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
